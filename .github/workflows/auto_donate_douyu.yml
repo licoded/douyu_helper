@@ -28,5 +28,6 @@ jobs:
           MAILSEND: ${{ secrets.MAILSEND }}
           PASSWORD: ${{ secrets.PASSWORD }}
           MAILGET: ${{ secrets.MAILGET }}
+          TOKEN: ${{ secrets.TOKEN }}
         run: |
           python main.py

@@ -73,5 +73,13 @@ def bank_send(success, message):
         if barkurl.startswith('https'):
             requests.get(barkurl + '/' + title + '/' + message + '?group=Douyu Donate')
 
+def bank_send1(success, message):
+    mode = int(conf.get_conf("SendMode")['banksend'])
+    if mode == 1:
+        title = success and 'Skland Success' or 'Skland Failure'
+        barkurl = get_secrets('BARKURL')
+        if barkurl.startswith('https'):
+            requests.get(barkurl + '/' + title + '/' + message + '?group=Skland AutoMark')
+
 if __name__ == '__main__':
     send_message()

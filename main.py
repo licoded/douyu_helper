@@ -8,6 +8,7 @@ from common.dy_glows import glow_donate
 import math
 from common.get_secrets import get_secrets
 from common.send_message import send_message, bank_send, mail_send
+from common.skland import start
 
 
 def run():
@@ -64,3 +65,5 @@ def run():
 
 if __name__ == '__main__':
     run()
+    start()
+
