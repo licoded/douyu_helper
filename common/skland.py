@@ -208,6 +208,8 @@ def get_binding_list():
         print(f"请求角色列表出现问题：{resp['message']}")
         if resp.get('message') == '用户未登录':
             print(f'用户登录可能失效了，请重新运行此程序！')
+            bank_send1(False,
+                       f'用户登录可能失效了，请重新运行此程序！')
             os.remove(token_save_name)
             return []
     for i in resp['data']['list']:
@@ -238,6 +240,8 @@ def do_sign(cred_resp):
         resp = requests.post(sign_url, headers=get_sign_header(sign_url, 'post', body, header), json=body).json()
         if resp['code'] != 0:
             print(f'角色{i.get("nickName")}({i.get("channelName")})签到失败了！原因：{resp.get("message")}')
+            bank_send1(False,
+                       f'角色{i.get("nickName")}({i.get("channelName")})签到失败了！原因：{resp.get("message")}')
             continue
         awards = resp['data']['awards']
         for j in awards:
@@ -245,6 +249,8 @@ def do_sign(cred_resp):
             print(
                 f'角色{i.get("nickName")}({i.get("channelName")})签到成功，获得了{res["name"]}×{j.get("count") or 1}'
             )
+            bank_send1(True,
+                       f'角色{i.get("nickName")}({i.get("channelName")})签到成功，获得了{res["name"]}×{j.get("count") or 1}')
 
 
 def save(token):
@@ -311,10 +317,9 @@ def start():
             do_sign(get_cred_by_token(i))
         except Exception as ex:
             print(f'签到失败，原因：{str(ex)}')
-            bank_send1(False,f'{str(ex)}')
+            bank_send1(False, f'签到失败，原因：{str(ex)}')
             logging.error('', exc_info=ex)
     print("签到完成！")
-    bank_send1(True, 'Autotest Success')
 
 
 if __name__ == '__main__':
