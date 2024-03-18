@@ -6,7 +6,7 @@ import time
 from getpass import getpass
 import logging
 from urllib import parse
-from send_message import bank_send1
+from common.send_message import bank_send1
 
 import requests
 
