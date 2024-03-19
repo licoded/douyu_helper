@@ -241,7 +241,7 @@ def do_sign(cred_resp):
         if resp['code'] != 0:
             print(f'角色{i.get("nickName")}({i.get("channelName")})签到失败了！原因：{resp.get("message")}')
             bank_send1(False,
-                       f'角色{i.get("nickName")}({i.get("channelName")})签到失败了！原因：{resp.get("message")}')
+                       f'角色{i.get("nickName").replace("#", " ")}({i.get("channelName")})签到失败了！原因：{resp.get("message")}')
             continue
         awards = resp['data']['awards']
         for j in awards:
@@ -250,7 +250,7 @@ def do_sign(cred_resp):
                 f'角色{i.get("nickName")}({i.get("channelName")})签到成功，获得了{res["name"]}×{j.get("count") or 1}'
             )
             bank_send1(True,
-                       f'角色{i.get("nickName")}({i.get("channelName")})签到成功，获得了{res["name"]}×{j.get("count") or 1}')
+                       f'角色{i.get("nickName").replace("#", " ")}({i.get("channelName")})签到成功，获得了{res["name"]}×{j.get("count") or 1}')
 
 
 def save(token):
