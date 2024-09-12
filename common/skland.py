@@ -191,6 +191,10 @@ def get_grant_code(token):
 
 
 def get_cred(grant):
+    print(requests.post(cred_code_url, json={
+        'code': grant,
+        'kind': 1
+    }, headers=header_login))
     resp = requests.post(cred_code_url, json={
         'code': grant,
         'kind': 1
