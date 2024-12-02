@@ -4,3 +4,4 @@
     - [ ] Andorid App 
     - [ ] 或者 WeChat 公众号
 - [ ] config Cache for workflow
+- [ ] cookies 自动刷新
